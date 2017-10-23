@@ -1,0 +1,4 @@
+{
+  "presets": ["react-native"]
+//  "plugins":["transform-decorators-legacy"] // 添加引用插件
+}
