@@ -5,8 +5,8 @@ import * as TYPES from '../actions/Types';
 import {handleActions} from 'redux-actions';
 const initialState = {
   isFetch: false,
+  json:{},
   data: [],
-  status: null,
 };
 const defaultAction = {};
 
@@ -21,8 +21,8 @@ export default function soon(state = initialState, action = defaultAction) {
     case TYPES.FETCH_SOON_LIST:
       return Object.assign({}, state, {
         isFetch: true,
-        data: action.soon,
-        status: 'done'
+        json: action.soon,
+        data: state.data.concat(action.soon.subjects),
       });
     default:
       return state;

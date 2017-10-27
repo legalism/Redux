@@ -11,8 +11,8 @@ export function fetchData(start = 0, count = 6, action: Function) {
           const json = JSON.parse(responseText);
           console.log("json=" + `${json.subjects}`);
           return json;
-        }).then((data) => {
-        dispatch(action(data));
+        }).then((obj) => {
+        dispatch(action(obj));
       }).catch((error) => {
         console.error(error.message);
         // dispatch({type: TYPES.FETCH_MOVE_LIST, error: error});

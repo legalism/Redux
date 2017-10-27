@@ -9,6 +9,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -40,21 +41,28 @@ class Home extends Component {
     this.props.navigation.navigate('NewsDetail', {id: id});
   };
   _fetchMore = () => {
-    let lastStart = this.props.moves.start;
-    let count = this.props.moves.count;
+    let lastStart = this.props.json.start;
+    let count = this.props.json.count;
     let start = lastStart + count;
-    this.props.fetchMore(start, 6);
+    this.props.fetchListAction(start);
   };
   _keyExtractor = (item, index) => item.id;
 
   render() {
+    const {navigate} = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <View style={styles.home_container}>
         <FlatList
-          data={this.props.moves.subjects}
+          data={this.props.movies}
           numColumns={3}
           refreshing={false}
           keyExtractor={this._keyExtractor}
+          onEndReached={ this._fetchMore}
+          ListFooterComponent={() => {
+            return (<ActivityIndicator size="large"/>);
+
+            /* refreshing &&*/
+          }}
           renderItem={({item}) => {
             return (<Item
               title={item.title}
@@ -79,7 +87,7 @@ class Home extends Component {
   }
 }
 const styles = StyleSheet.create({
-  container: {
+  home_container: {
     flex: 1,
   },
   row: {
@@ -91,7 +99,8 @@ const styles = StyleSheet.create({
 });
 export default connect(
   state => ({
-    moves: state.home.data,
+    json: state.home.json,
+    movies: state.home.data,
   }),
   dispatch => bindActionCreators({fetchListAction: fetchList, fetchMore}, dispatch),
 )(Home);

@@ -9,6 +9,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -18,10 +19,17 @@ import MessageItem from './MessageItem';
 const TAG = "Message:";
 class Message extends Component {
   componentWillMount() {
-    this.props.execute();
+    this.props.fetchSoon();
   }
 
   _keyExtractor = (item, index) => item.id;
+
+  _fetchMore = () => {
+    let lastStart = this.props.json.start;
+    let count = this.props.json.count;
+    let start = lastStart + count;
+    this.props.fetchSoon(start);
+  };
 
   render() {
     return (
@@ -30,6 +38,10 @@ class Message extends Component {
           data={this.props.soon}
           refreshing={false}
           keyExtractor={this._keyExtractor}
+          onEndReached={ this._fetchMore}
+          ListFooterComponent={() => {
+            return (<ActivityIndicator size="large"/>);
+          }}
           renderItem={({item}) => {
             return (
               <MessageItem
@@ -64,7 +76,8 @@ const styles = StyleSheet.create({
 
 export default connect(
   state => ({
-    soon: state.message.data.subjects,
+    json:state.message.json,
+    soon: state.message.data,
   }),
-  dispatch => bindActionCreators({execute: fetchSoon}, dispatch)
+  dispatch => bindActionCreators({fetchSoon}, dispatch)
 )(Message);

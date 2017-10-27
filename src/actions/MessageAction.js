@@ -9,10 +9,10 @@ const api = 'https://api.douban.com/v2/movie/coming_soon';
 //action 是一个用于描述已发生事件的普通对象。
 const soonAction = (soon) => {
   return {
-    type:TYPES.FETCH_SOON_LIST,
+    type: TYPES.FETCH_SOON_LIST,
     soon,
   };
 };
-export function fetchSoon() {
-  return fetchData(0, 6,soonAction)(api);
+export function fetchSoon(start = 0, count = 6) {
+  return fetchData(start, count, soonAction)(api);
 }

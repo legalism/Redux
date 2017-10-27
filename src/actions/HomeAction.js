@@ -26,16 +26,16 @@ const api = 'https://api.douban.com/v2/movie/in_theaters';
  });*/
 
 //action 是一个用于描述已发生事件的普通对象。
-const moveAction = (move) => {
+const moveAction = (movie) => {
   return {
     type:TYPES.FETCH_MOVE_LIST,
-    move,
+    movie,
   };
 };
-export function fetchList() {
-  return fetchData(0, 12,moveAction)(api);
+export function fetchList(start=0,count=6) {
+  return fetchData(start,count,moveAction)(api);
 }
 
-export function fetchMore(start=0,count=12) {
+export function fetchMore(start=0,count=6) {
   return fetchData(start,count,moveAction)(api)
 }

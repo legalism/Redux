@@ -21,8 +21,8 @@ import {handleActions} from 'redux-actions';
  {ret: true, statusText: '', data: []});*/
 const initialState = {
   isFetch: false,
+  json:{},
   data: [],
-  status: null,
 };
 const defaultAction = {};
 
@@ -38,17 +38,18 @@ export default function getNewState(state = initialState, action = defaultAction
       for(s in state){
         console.log("HomeReducer:"+"state="+s);
       }
+      let data=[];
       return Object.assign({}, state, {
         isFetch: true,
-        data: action.move,
-        status: 'done'
+        json:action.movie,
+        data: state.data.concat(action.movie.subjects),
       });
     case TYPES.FETCH_FIND_LIST:
       return {
         ...state,
         isFetch: false,
+        json:{},
         data: [],
-        status: null
       };
     default:
       return state;

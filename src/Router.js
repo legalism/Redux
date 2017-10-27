@@ -6,6 +6,8 @@ import Home from './pages/Home'
 import Find from './pages/Find'
 import Message from './pages/Message'
 import Me from './pages/Me'
+import Detail from './pages/Detail'
+import VideoView from './pages/VideoView'
 
 /**
  * 界面组件
@@ -20,7 +22,7 @@ const Tabs = TabNavigator(
         tabBarLabel: '首页',
         tabBarIcon: ({tintColor}) =>
           <Image
-            style={[styles.tabBarImage, {tintColor: tintColor}]}
+            style={[styles.tabBarImage, /*{tintColor: tintColor}*/]}
             source={require('../images/mode.png')}
           />,
       }
@@ -32,7 +34,7 @@ const Tabs = TabNavigator(
         tabBarLabel: '发现',
         tabBarIcon: ({tintColor}) =>
           <Image
-            style={[styles.tabBarImage, {tintColor: tintColor}]}
+            style={[styles.tabBarImage, /*{tintColor: tintColor}*/]}
             source={require('../images/mode.png')}
           />,
       }
@@ -44,7 +46,7 @@ const Tabs = TabNavigator(
         tabBarLabel: '消息',
         tabBarIcon: ({tintColor}) =>
           <Image
-            style={[styles.tabBarImage, {tintColor: tintColor}]}
+            style={[styles.tabBarImage, /*{tintColor: tintColor}*/]}
             source={require('../images/mode.png')}
           />,
       }
@@ -57,7 +59,7 @@ const Tabs = TabNavigator(
         tabBarLabel: '我的',
         tabBarIcon: ({tintColor}) =>
           <Image
-            style={[styles.tabBarImage, {tintColor: tintColor}]}
+            style={[styles.tabBarImage, /*{tintColor: tintColor}*/]}
             source={require('../images/mode.png')}
           />,
       }
@@ -116,7 +118,8 @@ const AppNavigator = StackNavigator(
         }
       }
     },
-    // Splash: {screen: SplashScene},
+    Detail: {screen: Detail},
+    VideoView: {screen: VideoView},
   },
 
   //StackNavigatorConfig
