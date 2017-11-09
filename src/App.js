@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import store from './store/index';
 import {connect, Provider} from 'react-redux';
 import Main from "./Main";
+import "./config/ReactotronConfig";
 /*@connect(state => ({
  nav: state.nav
  }))*/

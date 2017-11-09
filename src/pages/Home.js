@@ -16,6 +16,7 @@ import {bindActionCreators} from "redux";
 import {fetchList, fetchMore} from '../actions/HomeAction';
 import Item from "./Item";
 import {myconnect} from '../test';
+import Reactotron from 'reactotron-react-native'
 
 const TAG = "Home:";
 class Home extends Component {
@@ -29,12 +30,13 @@ class Home extends Component {
     let props = this.props;
     for (p in props) {
       console.log("props=" + p);
-      for (pr in p.home) {
+      for (pr in p.screenProps) {
         console.log("pr=" + pr);
       }
     }
     this.props.fetchListAction();
     // this.props.dispatch(fetchList(0, 6));
+    Reactotron.log('hello rendering world')
   }
 
   _onPressItem = (id) => {

@@ -10,6 +10,7 @@ export default class Main extends Component {
   render() {
     return (
       <Router
+        screenProps={{width:100,height:100}}
         navigation={addNavigationHelpers({
           dispatch: this.props.dispatch,
           state: this.props.nav
