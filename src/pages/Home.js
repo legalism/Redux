@@ -28,9 +28,9 @@ class Home extends Component {
 
   componentDidMount() {
     let props = this.props;
-    for (p in props) {
+    for (let p in props) {
       console.log("props=" + p);
-      for (pr in p.screenProps) {
+      for (let pr in p.screenProps) {
         console.log("pr=" + pr);
       }
     }

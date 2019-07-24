@@ -2,11 +2,7 @@
  * Created by pm on 17-7-17.
  */
 import React, {Component} from 'react';
-import {
-    Text,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {Image, Text, TouchableOpacity,} from 'react-native';
 
 const TAG="Me:";
 export default class Me extends Component {
@@ -14,6 +10,8 @@ export default class Me extends Component {
     super(props);
     console.log(TAG+this.props);
   }
+
+
     render() {
         const navigate = this.props.navigation.navigate;
         return (
@@ -23,7 +21,7 @@ export default class Me extends Component {
               console.log("hello")
             }}>
               <Image source={require("../../images/mode.png")}/>
-              <Text>我的</Text>
+              <Text style={{}}>我的</Text>
           </TouchableOpacity>
         );
     }
